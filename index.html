@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instalación de Cargadores para Autos Eléctricos</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <nav class="navbar">
+      <div class="logo">⚡ ElectroCharge</div>
+
+      <div class="nav-links">
+        <a href="#servicio">Servicio</a>
+        <a href="#cotizador">Cotizar</a>
+        <a href="#preguntas">Preguntas</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-content">
+        <span class="tag">SERVICIO PROFESIONAL</span>
+
+        <h1>Instalación de cargadores para autos eléctricos</h1>
+
+        <p>
+          Cotiza la instalación de tu punto de carga en casa, garaje, edificio o negocio.
+          Servicio seguro, ordenado y adaptado a tu instalación eléctrica.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#cotizador" class="btn-primary">Cotizar instalación</a>
+          <a href="#servicio" class="btn-secondary">Ver servicio</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="icon">🔌</div>
+        <h3>Punto de carga seguro</h3>
+        <p>Instalación técnica para cargadores eléctricos residenciales y comerciales.</p>
+      </div>
+    </section>
+  </header>
+
+  <main>
+
+    <section id="servicio" class="section">
+      <div class="section-title">
+        <span>¿Qué hacemos?</span>
+        <h2>Servicio de instalación eléctrica para cargadores</h2>
+        <p>
+          Evaluamos el lugar, revisamos la instalación eléctrica y realizamos el montaje del punto de carga.
+        </p>
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <h3>⚡ Evaluación técnica</h3>
+          <p>Revisión del tablero eléctrico, distancia del cableado y condiciones del lugar.</p>
+        </div>
+
+        <div class="card">
+          <h3>🔋 Instalación del cargador</h3>
+          <p>Montaje del cargador o wallbox según el tipo de vehículo y espacio disponible.</p>
+        </div>
+
+        <div class="card">
+          <h3>🛡️ Seguridad eléctrica</h3>
+          <p>Instalación con protecciones, cableado adecuado y prueba de funcionamiento.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="process-section">
+      <div class="section-title light">
+        <span>Proceso</span>
+        <h2>¿Cómo funciona?</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <strong>1</strong>
+          <h3>Solicitas cotización</h3>
+          <p>Completa el formulario con los datos básicos de tu instalación.</p>
+        </div>
+
+        <div class="step">
+          <strong>2</strong>
+          <h3>Revisamos tu caso</h3>
+          <p>Analizamos distancia, tipo de energía, ubicación y necesidad del cliente.</p>
+        </div>
+
+        <div class="step">
+          <strong>3</strong>
+          <h3>Coordinamos instalación</h3>
+          <p>Te contactamos por WhatsApp para confirmar precio, visita y fecha.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="cotizador" class="section">
+      <div class="section-title">
+        <span>Cotizador</span>
+        <h2>Cotiza tu instalación</h2>
+        <p>
+          Completa los datos y envía tu solicitud directamente por WhatsApp.
+        </p>
+      </div>
+
+      <form class="quote-form" id="quoteForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" placeholder="Ej: Juan Pérez" required />
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">Número de WhatsApp</label>
+            <input type="tel" id="telefono" placeholder="Ej: 70000000" required />
+          </div>
+
+          <div class="form-group">
+            <label for="ciudad">Ciudad o zona</label>
+            <input type="text" id="ciudad" placeholder="Ej: Santa Cruz, La Paz, Sucre..." required />
+          </div>
+
+          <div class="form-group">
+            <label for="tipo">Tipo de instalación</label>
+            <select id="tipo" required>
+              <option value="">Seleccionar</option>
+              <option value="Casa">Casa</option>
+              <option value="Departamento">Departamento</option>
+              <option value="Edificio">Edificio</option>
+              <option value="Garaje">Garaje</option>
+              <option value="Negocio">Negocio</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="distancia">Distancia desde el tablero</label>
+            <select id="distancia" required>
+              <option value="">Seleccionar</option>
+              <option value="Menos de 5 metros">Menos de 5 metros</option>
+              <option value="De 5 a 10 metros">De 5 a 10 metros</option>
+              <option value="De 10 a 20 metros">De 10 a 20 metros</option>
+              <option value="Más de 20 metros">Más de 20 metros</option>
+              <option value="No sé">No sé</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ubicacion">Ubicación del cargador</label>
+            <select id="ubicacion" required>
+              <option value="">Seleccionar</option>
+              <option value="Interior">Interior</option>
+              <option value="Exterior">Exterior</option>
+              <option value="Semi cubierto">Semi cubierto</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="cargador">¿Ya tienes cargador?</label>
+            <select id="cargador" required>
+              <option value="">Seleccionar</option>
+              <option value="Sí, ya tengo el cargador">Sí, ya tengo el cargador</option>
+              <option value="No, necesito recomendación">No, necesito recomendación</option>
+              <option value="Necesito cargador + instalación">Necesito cargador + instalación</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="energia">Tipo de energía</label>
+            <select id="energia" required>
+              <option value="">Seleccionar</option>
+              <option value="Monofásica">Monofásica</option>
+              <option value="Trifásica">Trifásica</option>
+              <option value="No sé">No sé</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Comentario adicional</label>
+          <textarea id="mensaje" rows="4" placeholder="Ej: El cargador será instalado en garaje, cerca del tablero eléctrico..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          Enviar cotización por WhatsApp
+        </button>
+      </form>
+    </section>
+
+    <section id="preguntas" class="faq-section">
+      <div class="section-title">
+        <span>Dudas frecuentes</span>
+        <h2>Preguntas frecuentes</h2>
+      </div>
+
+      <div class="faq">
+        <div class="faq-item">
+          <h3>¿El precio es fijo?</h3>
+          <p>No. El precio depende de la distancia del cableado, tipo de instalación, protecciones eléctricas y condiciones del lugar.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>¿Instalan en casas y edificios?</h3>
+          <p>Sí. Se realizan instalaciones en casas, garajes, edificios, parqueos y negocios.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>¿Puedo cotizar si no sé qué cargador necesito?</h3>
+          <p>Sí. Puedes solicitar recomendación según tu vehículo, energía disponible y uso diario.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="contact-section">
+      <h2>Solicita tu cotización hoy</h2>
+      <p>
+        Escríbenos por WhatsApp y recibe orientación para instalar tu cargador de auto eléctrico.
+      </p>
+
+      <a class="btn-primary" id="whatsappDirect" href="#" target="_blank">
+        Escribir por WhatsApp
+      </a>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Instalación de cargadores para autos eléctricos. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
