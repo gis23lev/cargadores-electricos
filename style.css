@@ -890,6 +890,11 @@ img {
     grid-template-columns: 1fr;
   }
 
+  .hero-metrics,
+  .hero-visual {
+    display: none;
+  }
+
   .section,
   .process-section {
     padding: 72px 5%;
