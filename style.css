@@ -353,6 +353,10 @@ img {
   line-height: 1.6;
 }
 
+.carousel-dots {
+  display: none;
+}
+
 .process-section {
   padding: 92px 7%;
   background: linear-gradient(135deg, #071e2b, #0c425f);
@@ -884,7 +888,6 @@ img {
   }
 
   .hero-metrics,
-  .cards,
   .steps,
   .form-grid {
     grid-template-columns: 1fr;
@@ -895,9 +898,93 @@ img {
     display: none;
   }
 
+  .gallery-strip,
+  .cards .card img {
+    display: none;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    gap: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+
+  .cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cards .card {
+    scroll-snap-align: start;
+    width: 100%;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    gap: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+
+  .steps::-webkit-scrollbar {
+    display: none;
+  }
+
+  .steps .step {
+    scroll-snap-align: start;
+    width: 100%;
+  }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .carousel-dots .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 0;
+    background: #9cb2bf;
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+.carousel-dots .dot.active {
+  width: 24px;
+  border-radius: 999px;
+  background: #00bf84;
+  opacity: 1;
+}
+
+.process-dots .dot {
+  background: rgba(201, 226, 238, 0.55);
+}
+
+.process-dots .dot.active {
+  background: #7af0c4;
+}
+
   .section,
   .process-section {
     padding: 72px 5%;
+  }
+
+  #cotizador.section {
+    padding-bottom: 28px;
   }
 
   .quick-questions {
@@ -905,7 +992,7 @@ img {
   }
 
   .contact-pro {
-    padding: 72px 5% 48px;
+    padding: 28px 5% 48px;
   }
 
   .contact-shell {
@@ -968,6 +1055,16 @@ img {
 
   .quote-form {
     padding: 24px;
+  }
+
+  .btn-submit {
+    background: #00a874;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.2;
+    padding: 16px 18px;
+    border-radius: 13px;
+    letter-spacing: 0.2px;
   }
 
   .footer {

@@ -77,6 +77,144 @@ if (chatbotClose && chatbotPanel) {
   });
 }
 
+const cardsTrack = document.querySelector(".cards");
+const cardsDots = document.getElementById("cardsDots");
+const stepsTrack = document.querySelector(".steps");
+const processDots = document.getElementById("processDots");
+let cardsTimer = null;
+let stepsTimer = null;
+let cardsIndex = 0;
+let stepsIndex = 0;
+
+function moverTrackAIndice(track, itemSelector, index) {
+  if (!track) return;
+  const items = track.querySelectorAll(itemSelector);
+  const target = items[index];
+  if (!target) return;
+  track.scrollTo({
+    left: target.offsetLeft,
+    behavior: "smooth",
+  });
+}
+
+function actualizarDots(index) {
+  if (!cardsDots) return;
+  const dots = cardsDots.querySelectorAll(".dot");
+  dots.forEach(function (dot, i) {
+    dot.classList.toggle("active", i === index);
+  });
+}
+
+function iniciarCarruselCardsMovil() {
+  if (!cardsTrack) return;
+  const isMobile = window.matchMedia("(max-width: 900px)").matches;
+  if (!isMobile) {
+    if (cardsTimer) {
+      clearInterval(cardsTimer);
+      cardsTimer = null;
+    }
+    return;
+  }
+
+  const cards = cardsTrack.querySelectorAll(".card");
+  if (cards.length < 2) return;
+
+  if (cardsTimer) clearInterval(cardsTimer);
+
+  cardsTimer = setInterval(function () {
+    cardsIndex = (cardsIndex + 1) % cards.length;
+    moverTrackAIndice(cardsTrack, ".card", cardsIndex);
+    actualizarDots(cardsIndex);
+  }, 3200);
+}
+
+if (cardsTrack) {
+  cardsTrack.addEventListener("scroll", function () {
+    const cards = cardsTrack.querySelectorAll(".card");
+    if (!cards.length) return;
+    const cardWidth = cardsTrack.clientWidth || 1;
+    const index = Math.round(cardsTrack.scrollLeft / cardWidth);
+    cardsIndex = Math.max(0, Math.min(index, cards.length - 1));
+    actualizarDots(cardsIndex);
+  });
+
+  if (cardsDots) {
+    cardsDots.addEventListener("click", function (event) {
+      const dot = event.target.closest(".dot");
+      if (!dot) return;
+      const index = Number(dot.dataset.slide);
+      const cards = cardsTrack.querySelectorAll(".card");
+      if (!cards[index]) return;
+      cardsIndex = index;
+      moverTrackAIndice(cardsTrack, ".card", cardsIndex);
+      actualizarDots(cardsIndex);
+    });
+  }
+
+  actualizarDots(0);
+  iniciarCarruselCardsMovil();
+  window.addEventListener("resize", iniciarCarruselCardsMovil);
+}
+
+function actualizarDotsProceso(index) {
+  if (!processDots) return;
+  const dots = processDots.querySelectorAll(".dot");
+  dots.forEach(function (dot, i) {
+    dot.classList.toggle("active", i === index);
+  });
+}
+
+function iniciarCarruselProcesoMovil() {
+  if (!stepsTrack) return;
+  const isMobile = window.matchMedia("(max-width: 900px)").matches;
+  if (!isMobile) {
+    if (stepsTimer) {
+      clearInterval(stepsTimer);
+      stepsTimer = null;
+    }
+    return;
+  }
+
+  const steps = stepsTrack.querySelectorAll(".step");
+  if (steps.length < 2) return;
+
+  if (stepsTimer) clearInterval(stepsTimer);
+
+  stepsTimer = setInterval(function () {
+    stepsIndex = (stepsIndex + 1) % steps.length;
+    moverTrackAIndice(stepsTrack, ".step", stepsIndex);
+    actualizarDotsProceso(stepsIndex);
+  }, 3400);
+}
+
+if (stepsTrack) {
+  stepsTrack.addEventListener("scroll", function () {
+    const steps = stepsTrack.querySelectorAll(".step");
+    if (!steps.length) return;
+    const stepWidth = stepsTrack.clientWidth || 1;
+    const index = Math.round(stepsTrack.scrollLeft / stepWidth);
+    stepsIndex = Math.max(0, Math.min(index, steps.length - 1));
+    actualizarDotsProceso(stepsIndex);
+  });
+
+  if (processDots) {
+    processDots.addEventListener("click", function (event) {
+      const dot = event.target.closest(".dot");
+      if (!dot) return;
+      const index = Number(dot.dataset.slide);
+      const steps = stepsTrack.querySelectorAll(".step");
+      if (!steps[index]) return;
+      stepsIndex = index;
+      moverTrackAIndice(stepsTrack, ".step", stepsIndex);
+      actualizarDotsProceso(stepsIndex);
+    });
+  }
+
+  actualizarDotsProceso(0);
+  iniciarCarruselProcesoMovil();
+  window.addEventListener("resize", iniciarCarruselProcesoMovil);
+}
+
 if (footer) {
   const observer = new IntersectionObserver(
     function (entries) {
