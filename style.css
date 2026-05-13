@@ -473,34 +473,175 @@ img {
   margin-top: 8px;
 }
 
-.faq-section {
-  padding: 92px 7%;
-  background: #f8fbfd;
-}
-
-.faq {
-  max-width: 900px;
-  margin: auto;
+.chat-window {
+  background: #f3f9fc;
+  border: 1px solid #d8e8f0;
+  border-radius: 16px;
+  min-height: 140px;
+  padding: 14px;
   display: grid;
-  gap: 16px;
+  gap: 10px;
+  margin-bottom: 12px;
 }
 
-.faq-item {
+.chat-bubble {
+  width: fit-content;
+  max-width: 85%;
+  border-radius: 14px;
+  padding: 10px 12px;
+  line-height: 1.5;
+  font-size: 15px;
+}
+
+.chat-bubble.bot {
+  background: #e7f7f0;
+  border: 1px solid #bfead9;
+  color: #083225;
+}
+
+.chat-bubble.user {
+  background: #0f3d57;
+  color: #eaf8ff;
+  margin-left: auto;
+}
+
+.quick-questions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.quick-btn {
+  border: 1px solid #cfe1ea;
   background: #ffffff;
-  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.quick-btn:hover {
+  border-color: #99d6bf;
+  background: #f0fbf6;
+}
+
+.chat-actions {
+  margin-top: 14px;
+}
+
+.chat-wa {
+  display: inline-block;
+  background: #00bf84;
+  color: #03231a;
+  padding: 11px 16px;
+  border-radius: 12px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.chatbot-floating {
+  position: fixed;
+  left: auto;
+  right: 16px;
+  bottom: 18px;
+  transform: none;
+  z-index: 200;
+}
+
+.floating-quote {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  z-index: 190;
+  background: #00bf84;
+  color: #03231a;
+  font-weight: 800;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 14px 30px rgba(0, 191, 132, 0.42);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.floating-quote:hover {
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.chatbot-trigger {
+  width: 62px;
+  height: 62px;
+  border: 0;
+  border-radius: 50%;
+  background: #00bf84;
+  color: #03231a;
+  box-shadow: 0 16px 34px rgba(0, 191, 132, 0.45);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.chatbot-trigger svg {
+  width: 30px;
+  height: 30px;
+}
+
+.chatbot-panel {
+  position: absolute;
+  right: 0;
+  bottom: 74px;
+  width: min(380px, calc(100vw - 28px));
+  background: #ffffff;
+  border: 1px solid #d2e3ec;
   border-radius: 18px;
-  padding: 24px;
+  box-shadow: 0 20px 42px rgba(7, 41, 62, 0.22);
+  padding: 12px;
+  display: none;
 }
 
-.faq-item h3 {
-  font-size: 21px;
-  margin-bottom: 8px;
-  color: #092330;
+.chatbot-panel.open {
+  display: block;
 }
 
-.faq-item p {
-  color: var(--muted);
-  line-height: 1.6;
+.floating-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chatbot-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.chatbot-head strong {
+  color: #0c2a38;
+  font-family: "Sora", sans-serif;
+  font-size: 15px;
+}
+
+.chatbot-head button {
+  border: 0;
+  background: #e9f3f8;
+  color: #134055;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.chatbot-panel .quick-questions {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.chatbot-panel .chat-wa {
+  width: 100%;
+  margin-top: 10px;
 }
 
 .mini-tag {
@@ -710,12 +851,14 @@ img {
     gap: 10px;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
+    padding: 10px 14px;
   }
 
   .nav-links {
     width: 100%;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: nowrap;
     overflow-x: auto;
     scrollbar-width: none;
@@ -727,7 +870,17 @@ img {
 
   .nav-links a {
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 13px;
+  }
+
+  .logo {
+    font-size: 20px;
+    gap: 8px;
+  }
+
+  .logo-mark {
+    width: 28px;
+    height: 28px;
   }
 
   .hero-metrics,
@@ -738,9 +891,12 @@ img {
   }
 
   .section,
-  .process-section,
-  .faq-section {
+  .process-section {
     padding: 72px 5%;
+  }
+
+  .quick-questions {
+    grid-template-columns: 1fr;
   }
 
   .contact-pro {
@@ -779,6 +935,30 @@ img {
 
   .social-links {
     justify-content: flex-start;
+  }
+
+  .chatbot-floating {
+    left: auto;
+    right: 12px;
+    bottom: 12px;
+    transform: none;
+  }
+
+  .floating-quote {
+    left: 50%;
+    bottom: 12px;
+    transform: translateX(-50%);
+    padding: 10px 14px;
+    border-radius: 10px;
+  }
+
+  .chatbot-trigger {
+    width: 56px;
+    height: 56px;
+  }
+
+  .chatbot-panel {
+    bottom: 66px;
   }
 
   .quote-form {

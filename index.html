@@ -23,7 +23,6 @@
       <div class="nav-links">
         <a href="#servicio">Servicio</a>
         <a href="#cotizador">Cotizar</a>
-        <a href="#preguntas">Preguntas</a>
         <a href="#contacto">Contacto</a>
       </div>
     </nav>
@@ -238,30 +237,6 @@
       </form>
     </section>
 
-    <section id="preguntas" class="faq-section">
-      <div class="section-title">
-        <span>Dudas frecuentes</span>
-        <h2>Preguntas frecuentes</h2>
-      </div>
-
-      <div class="faq">
-        <div class="faq-item">
-          <h3>¿El precio es fijo?</h3>
-          <p>No. El precio depende de la distancia del cableado, tipo de instalación, protecciones eléctricas y condiciones del lugar.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>¿Instalan en casas y edificios?</h3>
-          <p>Sí. Realizamos instalaciones en casas, garajes, edificios, parqueos y negocios.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>¿Puedo cotizar si no sé qué cargador necesito?</h3>
-          <p>Sí. Te recomendamos el cargador según tu vehículo, energía disponible y uso diario.</p>
-        </div>
-      </div>
-    </section>
-
     <section id="contacto" class="contact-pro">
       <div class="contact-shell">
         <div class="contact-main">
@@ -309,8 +284,38 @@
 
   </main>
 
+  <!-- <a href="#cotizador" class="floating-quote">Cotizar</a> -->
+
+  <div class="chatbot-floating">
+    <button type="button" class="chatbot-trigger" id="chatbotTrigger" aria-label="Abrir asistente">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 10h8M8 14h5M5 19l1.2-3A7 7 0 1 1 19 12a7 7 0 0 1-7 7H5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <section class="chatbot-panel" id="chatbotPanel" aria-hidden="true">
+      <header class="chatbot-head">
+        <strong>Asistente ElectroCharge</strong>
+        <button type="button" id="chatbotClose" aria-label="Cerrar">×</button>
+      </header>
+
+      <div class="chat-window" id="chatWindow">
+        <div class="chat-bubble bot">
+          Hola, soy el asistente. Elige una pregunta rápida y te ayudo al instante.
+        </div>
+      </div>
+
+      <div class="quick-questions" id="quickQuestions">
+        <button type="button" class="quick-btn" data-question="precio">¿El precio es fijo?</button>
+        <button type="button" class="quick-btn" data-question="lugares">¿Dónde instalan?</button>
+        <button type="button" class="quick-btn" data-question="sin-cargador">No tengo cargador</button>
+        <button type="button" class="quick-btn" data-question="tiempo">¿Cuánto tarda?</button>
+      </div>
+
+      <a id="whatsappFallback" class="chat-wa" href="#" target="_blank">Hablar por WhatsApp</a>
+    </section>
+  </div>
+
   <footer class="footer">
-    <p>© 2026 Instalación de cargadores para autos eléctricos. Todos los derechos reservados.</p>
+    <p>© 2026 Gisela Levito. Todos los derechos reservados.</p>
   </footer>
 
   <script src="script.js"></script>
