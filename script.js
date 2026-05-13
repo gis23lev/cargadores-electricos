@@ -69,6 +69,10 @@ if (quickQuestions) {
 if (chatbotTrigger && chatbotPanel) {
   chatbotTrigger.addEventListener("click", function () {
     chatbotPanel.classList.toggle("open");
+    chatbotTrigger.classList.toggle("active", chatbotPanel.classList.contains("open"));
+    chatbotTrigger.classList.remove("pulse");
+    void chatbotTrigger.offsetWidth;
+    chatbotTrigger.classList.add("pulse");
     chatbotPanel.setAttribute(
       "aria-hidden",
       String(!chatbotPanel.classList.contains("open"))
@@ -79,6 +83,12 @@ if (chatbotTrigger && chatbotPanel) {
 if (chatbotClose && chatbotPanel) {
   chatbotClose.addEventListener("click", function () {
     chatbotPanel.classList.remove("open");
+    if (chatbotTrigger) {
+      chatbotTrigger.classList.remove("active");
+      chatbotTrigger.classList.remove("pulse");
+      void chatbotTrigger.offsetWidth;
+      chatbotTrigger.classList.add("pulse");
+    }
     chatbotPanel.setAttribute("aria-hidden", "true");
   });
 }

@@ -543,10 +543,13 @@ img {
   border: 1px solid #d8e8f0;
   border-radius: 16px;
   min-height: 140px;
+  max-height: 260px;
   padding: 14px;
   display: grid;
   gap: 10px;
   margin-bottom: 12px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .chat-bubble {
@@ -654,6 +657,15 @@ img {
 .chatbot-trigger svg {
   width: 30px;
   height: 30px;
+  transition: transform 0.22s ease;
+}
+
+.chatbot-trigger.active svg {
+  transform: rotate(-12deg) scale(1.08);
+}
+
+.chatbot-trigger.pulse {
+  animation: triggerPulse 0.35s ease;
 }
 
 .chatbot-panel {
@@ -666,11 +678,43 @@ img {
   border-radius: 18px;
   box-shadow: 0 20px 42px rgba(7, 41, 62, 0.22);
   padding: 12px;
-  display: none;
+  display: block;
+  max-height: calc(100vh - 110px);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(22px) scale(0.9);
+  transform-origin: bottom right;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
 
 .chatbot-panel.open {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  animation: chatPopIn 0.34s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes chatPopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(26px) scale(0.86);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.02);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes triggerPulse {
+  0% { transform: scale(1); }
+  45% { transform: scale(1.14); }
+  100% { transform: scale(1); }
 }
 
 .floating-hidden {
@@ -913,6 +957,11 @@ img {
 }
 
 @media (max-width: 900px) {
+  .header {
+    min-height: auto;
+    padding: 106px 5% 24px;
+  }
+
   .navbar {
     top: 8px;
     width: 92%;
@@ -960,6 +1009,19 @@ img {
   .hero-metrics,
   .hero-visual {
     display: none;
+  }
+
+  .hero {
+    gap: 24px;
+    padding-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 8vw, 52px);
+  }
+
+  .hero p {
+    margin: 16px 0 22px;
   }
 
   .gallery-strip,
@@ -1115,6 +1177,7 @@ img {
 
   .chatbot-panel {
     bottom: 66px;
+    max-height: calc(100vh - 92px);
   }
 
   .quote-form {
