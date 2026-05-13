@@ -11,6 +11,12 @@ const chatbotClose = document.getElementById("chatbotClose");
 const floatingQuote = document.querySelector(".floating-quote");
 const chatbotFloating = document.querySelector(".chatbot-floating");
 const footer = document.querySelector(".footer");
+const navSectionLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+const formSteps = document.querySelectorAll(".form-step");
+const nextStepBtn = document.getElementById("nextStep");
+const prevStepBtn = document.getElementById("prevStep");
+const stepIndicators = document.querySelectorAll("[data-step-indicator]");
+let currentStep = 0;
 
 const mensajeBase = "Hola, quiero cotizar la instalación de un cargador para auto eléctrico.";
 const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensajeBase)}`;
@@ -215,6 +221,53 @@ if (stepsTrack) {
   window.addEventListener("resize", iniciarCarruselProcesoMovil);
 }
 
+function actualizarWizard() {
+  if (!formSteps.length) return;
+  formSteps.forEach(function (step, index) {
+    step.classList.toggle("active", index === currentStep);
+  });
+  stepIndicators.forEach(function (indicator, index) {
+    indicator.classList.toggle("active", index === currentStep);
+  });
+  if (prevStepBtn) prevStepBtn.disabled = currentStep === 0;
+  if (nextStepBtn) {
+    const last = currentStep === formSteps.length - 1;
+    nextStepBtn.style.display = last ? "none" : "inline-block";
+  }
+}
+
+function validarPasoActual() {
+  const step = formSteps[currentStep];
+  if (!step) return true;
+  const requiredFields = step.querySelectorAll("input[required], select[required], textarea[required]");
+  for (const field of requiredFields) {
+    if (!field.checkValidity()) {
+      field.reportValidity();
+      return false;
+    }
+  }
+  return true;
+}
+
+if (nextStepBtn && prevStepBtn && formSteps.length) {
+  nextStepBtn.addEventListener("click", function () {
+    if (!validarPasoActual()) return;
+    if (currentStep < formSteps.length - 1) {
+      currentStep += 1;
+      actualizarWizard();
+    }
+  });
+
+  prevStepBtn.addEventListener("click", function () {
+    if (currentStep > 0) {
+      currentStep -= 1;
+      actualizarWizard();
+    }
+  });
+
+  actualizarWizard();
+}
+
 if (footer) {
   const observer = new IntersectionObserver(
     function (entries) {
@@ -229,6 +282,33 @@ if (footer) {
     { threshold: 0.12 }
   );
   observer.observe(footer);
+}
+
+if (navSectionLinks.length) {
+  const sectionMap = new Map();
+  navSectionLinks.forEach(function (link) {
+    const targetId = link.getAttribute("href");
+    const section = document.querySelector(targetId);
+    if (section) sectionMap.set(section, link);
+  });
+
+  const sectionObserver = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        navSectionLinks.forEach(function (link) {
+          link.classList.remove("active-link");
+        });
+        const activeLink = sectionMap.get(entry.target);
+        if (activeLink) activeLink.classList.add("active-link");
+      });
+    },
+    { threshold: 0.45 }
+  );
+
+  sectionMap.forEach(function (_, section) {
+    sectionObserver.observe(section);
+  });
 }
 
 form.addEventListener("submit", function (event) {
